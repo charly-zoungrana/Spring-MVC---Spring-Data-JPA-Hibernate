@@ -24,7 +24,6 @@ public class Product {
     @NotEmpty
     @Size(min=3,max=50)
     private String name;
-    private String description;
     @Min(0)
     private Double price;
     @Min(1)
