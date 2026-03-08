@@ -35,8 +35,9 @@ public class SecurityConfig {
         return http
                 .formLogin(Customizer.withDefaults())
                 .authorizeHttpRequests(ar -> ar
-                        .requestMatchers("/index/**").hasRole("USER")
-                        .requestMatchers("/delete/**","/saveProduct").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/admin/**","/saveProduct").hasRole("ADMIN")
+                        .requestMatchers("/public/**").permitAll()
                         .anyRequest().authenticated())
                 .build();
     }
