@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**","/saveProduct").hasRole("ADMIN")
                         .requestMatchers("/public/**").permitAll()
                         .anyRequest().authenticated())
+                .exceptionHandling(eh ->eh.accessDeniedPage("/notAuthorized") )
                 .build();
     }
 }
