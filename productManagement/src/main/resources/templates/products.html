@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      layout:decorate="layout1"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout1">
+
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
 </head>
+
 <body>
     <div class="p-3" layout:fragment="content">
+        <form class="d-flex" role="search" method="GET" th:action="@{/user/findProduct}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name"/>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
         <div class="p-3" sec:authorize="hasRole('ADMIN')">
             <a class="btn btn-primary" th:href="@{/admin/newProduct}">New Product</a>
         </div>
@@ -37,4 +39,5 @@
         </table>
     </div>
 </body>
+
 </html>
