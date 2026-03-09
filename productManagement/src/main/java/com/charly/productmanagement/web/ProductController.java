@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -60,6 +61,21 @@ public class ProductController {
         List<Product> products = productRepository.findByNameContainingIgnoreCase(name);
         model.addAttribute("productList", products);
         return "products";
+    }
+
+    @PostMapping("/admin/editProduct")
+    public String editProduct(@RequestParam(name="id") Long id,Model model){
+        Optional<Product> productOptional=productRepository.findById(id);
+        productOptional.ifPresent(product -> model.addAttribute("product", product));
+        return "edit-product";
+    }
+
+    @PostMapping("/admin/updateProduct")
+    public String updateProduct(@Valid Product product, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors())
+            return "new-product";
+        productRepository.save(product);
+        return "redirect:/user/index";
     }
 
 
