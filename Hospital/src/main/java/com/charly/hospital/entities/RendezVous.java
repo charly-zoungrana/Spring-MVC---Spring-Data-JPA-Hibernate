@@ -15,8 +15,7 @@ import java.time.LocalDate;
 @Builder
 public class RendezVous {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private LocalDate date;
     @Enumerated(EnumType.STRING)
     private StatusRDV statusRDV;

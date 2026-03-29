@@ -14,7 +14,7 @@ public interface IHospitalService {
     Patient getPatientById(Long id);
     Patient getPatientByNom(String nom);
     Medecin getMedecinByNom(String nom);
-    RendezVous getRDVById(Long id);
+    RendezVous getRDVById(String id);
     Consultation getConsultationById(Long id);
 
 }

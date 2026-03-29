@@ -23,7 +23,7 @@ public class HospitalApplication {
     }
 
     @Bean
-    CommandLineRunner start(IHospitalService hospitalService) {
+    CommandLineRunner start(IHospitalService hospitalService, RendezVousRepository rendezVousRepository) {
         return args -> {
 
             Stream.of("Mohammed","Youssef","Ali")
@@ -58,9 +58,10 @@ public class HospitalApplication {
                     .patient(patient1)
                     .build();
 
-            hospitalService.saveRDV(rendezVous);
+            RendezVous saved=hospitalService.saveRDV(rendezVous);
+            System.out.println(saved.getId());
 
-            RendezVous rendezVous1=hospitalService.getRDVById(1L);
+            RendezVous rendezVous1=rendezVousRepository.findAll().getFirst();
             Consultation consultation=Consultation.builder()
                     .dateConsultation(rendezVous1 != null ? rendezVous1.getDate() : null)
                     .rendezVous(rendezVous1)
